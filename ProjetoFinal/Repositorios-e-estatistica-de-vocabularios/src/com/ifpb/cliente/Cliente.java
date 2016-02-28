@@ -17,24 +17,17 @@ public class Cliente {
 	
 	
  public static void main( String args[] ) throws NotBoundException, FileNotFoundException, IOException {
-    // criação da comunicação //
-	 Registry registro = LocateRegistry.getRegistry("localhost",1099);
-	 InterfaceRemota obj=(InterfaceRemota) registro.lookup("RMI");
-	//-------------------------//
-	 
-	 
-	 //arquivoSerializavel é uma classe serializavél //
+    
+	 Registry registro = LocateRegistry.getRegistry("localhost",7000);
+	 InterfaceRemota connection=(InterfaceRemota) registro.lookup("RMI");
 	 SerialList ListSerialized = new SerialList();
-	 //----------------------------------------------//
+	
 	 
-	 //atribuindo o retorno do método abrindo arquivos a um array do obj da classe seralizavél//
-	 ListSerialized.setObj(openArquive("/home/anderson/IO.txt"));//passando o camminho do arquivo
-	//---------------------------------------------------------------------------------------//	
-	  
-	 //chamando métodos remotos//
-	  try {
+	 
+	 ListSerialized.setObj(openArquive("/home/anderson/IO.txt"));
+	 try {
 		  	
-	    	obj.Init(ListSerialized);
+	    	connection.Init(ListSerialized);
 	    	
 		} catch (Exception e) {
 			

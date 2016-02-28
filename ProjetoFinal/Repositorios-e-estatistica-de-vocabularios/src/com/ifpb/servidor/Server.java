@@ -9,9 +9,9 @@ public class Server {
 
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException{
          
-    InterfaceRemota m = new InterfaceImp(); 
-    Registry registro=LocateRegistry.createRegistry(1099);
-    registro.bind("RMI", m);
+    InterfaceRemota servidor = new InterfaceImp(); 
+    Registry registro=LocateRegistry.createRegistry(7000);
+    registro.bind("RMI", servidor);
 	
 	}
 	
