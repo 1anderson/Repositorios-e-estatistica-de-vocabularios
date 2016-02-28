@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 //classe serializavél//
-public class ArquivoSerializavel implements  Serializable {
+public class SerialList implements  Serializable {
 
 
 	private static final long serialVersionUID = 1L;

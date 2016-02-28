@@ -24,17 +24,17 @@ public class Cliente {
 	 
 	 
 	 //arquivoSerializavel é uma classe serializavél //
-	 ArquivoSerializavel objSerial = new ArquivoSerializavel();
+	 SerialList ListSerialized = new SerialList();
 	 //----------------------------------------------//
 	 
 	 //atribuindo o retorno do método abrindo arquivos a um array do obj da classe seralizavél//
-	 objSerial.setObj(AbrindoArquivo("/home/anderson/IO.txt"));//passando o camminho do arquivo
+	 ListSerialized.setObj(openArquive("/home/anderson/IO.txt"));//passando o camminho do arquivo
 	//---------------------------------------------------------------------------------------//	
 	  
 	 //chamando métodos remotos//
 	  try {
-		  	obj.PassaArquivos(objSerial);
-	    	obj.Init();
+		  	
+	    	obj.Init(ListSerialized);
 	    	
 		} catch (Exception e) {
 			
@@ -43,23 +43,20 @@ public class Cliente {
  } 
      //--------------------------//	
 
-static ArrayList<String> AbrindoArquivo(String caminho) throws IOException{
+static ArrayList<String> openArquive(String destiny) throws IOException{
    
-  ArrayList<String> listaComandos = new ArrayList<String>();
-  InputStream is = new FileInputStream(caminho);
+  ArrayList<String> listOfUrls = new ArrayList<String>();
+  InputStream is = new FileInputStream(destiny);
   InputStreamReader ir = new InputStreamReader(is);
   @SuppressWarnings("resource")
   BufferedReader bf = new BufferedReader(ir);
-  String comando=bf.readLine();
-// jogando comandos do arquivo dentro do array//
-   while(comando!=null){
-	   
-	   listaComandos.add(comando);
-	   comando=bf.readLine();
+  String line=bf.readLine();
+
+   while(line!=null){
+	   listOfUrls.add(line);
+	   line=bf.readLine();
    }
-//--------------------------------------------//	
-	
-	return listaComandos;
+   return listOfUrls;
 
 }
 

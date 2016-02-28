@@ -6,6 +6,6 @@ import java.net.MalformedURLException;
 
 public interface Repositories {
 	
-	public String  ProjectDownload(String UrlRepository) throws MalformedURLException, FileNotFoundException, IOException;
+	public String  projectDownload(String urlRepository) throws MalformedURLException, FileNotFoundException, IOException;
 
 }

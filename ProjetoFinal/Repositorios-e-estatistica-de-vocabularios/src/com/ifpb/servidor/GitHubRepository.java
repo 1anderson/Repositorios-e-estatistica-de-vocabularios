@@ -15,7 +15,7 @@ public class GitHubRepository implements Repositories {
 	private String projectName;
 	private String[] stringAuxiliar;
 	
-	public String ProjectDownload(String linkRepository) throws IOException {
+	public String projectDownload(String linkRepository) throws IOException {
 			int umByte = 0;
 			this.projectName = linkRepository;
 			this.stringAuxiliar = this.projectName.split("//");
