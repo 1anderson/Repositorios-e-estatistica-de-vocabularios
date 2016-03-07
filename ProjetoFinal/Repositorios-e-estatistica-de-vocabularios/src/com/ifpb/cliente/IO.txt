@@ -1,6 +1,8 @@
+https://sourceforge.net/code-snapshots/svn/j/ja/java-pwgen/src/java-pwgen-src-16.zip
 https://github.com/google/FreeBuilder/archive/master.zip
 https://github.com/google/MOE/archive/master.zip
 https://github.com/gwtproject/gwt-site/archive/master.zip
+https://sourceforge.net/code-snapshots/svn/s/sh/shareazaplus/code/shareazaplus-code-1645-trunk.zip
 https://github.com/google/mail-importer/archive/master.zip
 https://github.com/google/openrtb-doubleclick/archive/master.zip
 https://github.com/google/google-http-java-client/archive/dev.zip

@@ -22,16 +22,21 @@ public class InterfaceImp extends UnicastRemoteObject implements InterfaceRemota
 	public void Init(SerialList lista) throws IOException {
 	   this.lista=lista.getObj();
 	   GitHubRepository gitHubRepository = new GitHubRepository();
-	   this.Download(gitHubRepository,this.lista.get(0));
-		   
+	   SourgeForgeRepository sourgeForgeRepository = new SourgeForgeRepository();
+	   for(int i=0;i<this.lista.size();i++)
+	     if(this.lista.get(i).contains("github"))
+		  this.Download(gitHubRepository,this.lista.get(i),this.lista.get(i));
+	     else{
+	      this.Download(sourgeForgeRepository,this.lista.get(i),this.lista.get(i)); 
+	     }
 	}
 
-	public void Download(Repositories repository,String urlProject) throws IOException{
-	  this.Extrator(repository.projectDownload(urlProject));
+	public void Download(Repositories repository,String urlProject,String nameRepository) throws IOException{
+	  this.Extrator(repository.projectDownload(urlProject),nameRepository);
 	  
 	}
 
-    public void Extrator(String nomeDoArquivo) throws IOException{
+    public void Extrator(String nomeDoArquivo,String nameRepository) throws IOException{
 	  String line="mkdir "+nomeDoArquivo+"-v-e";
       CommandLine cmdLine = CommandLine.parse(line);
       DefaultExecutor executor = new DefaultExecutor();
@@ -39,10 +44,20 @@ public class InterfaceImp extends UnicastRemoteObject implements InterfaceRemota
       line="unzip "+nomeDoArquivo+".zip -d ./";
       cmdLine = CommandLine.parse(line);
       executor.execute(cmdLine);
-      String extrator = "java -jar VocabularyExtractor.jar -n \"termscounter\" -d \"./"+nomeDoArquivo+"-master/\" -loc iah -vxl \"./"+nomeDoArquivo+"-v-e/termscounter.vxl\" -csv \"./"+nomeDoArquivo+"-v-e/termscounter.csv\"";
+      String extrator=null;
+      if(nameRepository.contains("github")){ 
+      extrator = "java -jar VocabularyExtractor.jar -n \"termscounter\" -d \"./"+nomeDoArquivo+"-master/\" -loc iah -vxl \"./"+nomeDoArquivo+"-v-e/termscounter.vxl\" -csv \"./"+nomeDoArquivo+"-v-e/termscounter.csv\"";
+      }
+      else{
+    	  extrator = "java -jar VocabularyExtractor.jar -n \"termscounter\" -d \"./"+nomeDoArquivo+"/\" -loc iah -vxl \"./"+nomeDoArquivo+"-v-e/termscounter.vxl\" -csv \"./"+nomeDoArquivo+"-v-e/termscounter.csv\"";  
+      }
       cmdLine = CommandLine.parse(extrator);
       executor.execute(cmdLine);
-      line="rm -rf "+nomeDoArquivo+"-master";
+      if(nameRepository.contains("github")){ 
+    	  line="rm -rf "+nomeDoArquivo+"-master";
+      }else{
+    	  line="rm -rf "+nomeDoArquivo;  
+      }
       cmdLine = CommandLine.parse(line);
       executor.execute(cmdLine);
       line="rm -rf "+nomeDoArquivo+".zip";
