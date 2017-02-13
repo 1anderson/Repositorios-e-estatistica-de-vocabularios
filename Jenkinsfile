@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker 'java' }
+    agent any
     stages {
         stage('build') {
             steps {
