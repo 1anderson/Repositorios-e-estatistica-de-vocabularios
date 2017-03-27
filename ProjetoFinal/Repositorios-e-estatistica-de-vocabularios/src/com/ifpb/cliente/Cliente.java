@@ -20,6 +20,8 @@ public class Cliente {
     // criação da comunicação //
 	 Registry registro = LocateRegistry.getRegistry("localhost",1099);
 	 InterfaceRemota obj=(InterfaceRemota) registro.lookup("RMI");
+	 int novaPalavra;
+	 int novaPalavra2;
 	//-------------------------//
 	 
 	 
